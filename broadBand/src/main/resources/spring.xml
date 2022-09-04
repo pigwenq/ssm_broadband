@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<context:component-scan base-package="service"/>
+	
+	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${uname}"/>
+		<property name="password" value="${pwd}"/>
+	</bean>
+	
+	
+	<!-- mybatis -->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="ds"/>
+			<property name="configLocation" value="classpath:mybatis.xml"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="dao"/>
+	</bean>
+	
+	<!--4.事务配置  -->
+	<!--4.1 事务管理器:注入数据源，获取连接对象；提供接口，执行事务  -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds"/>
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager"/>
+</beans>

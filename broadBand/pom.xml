@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>zwq</groupId>
+  <artifactId>broadBand</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>broadBand Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!--1.spring/springmvc  -->
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    	<version>5.3.14</version>
+    </dependency>
+     <!-- 2.mybatis -->
+    <dependency>
+    	<groupId>org.mybatis</groupId>
+    	<artifactId>mybatis</artifactId>
+    	<version>3.5.9</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.mybatis</groupId>
+    	<artifactId>mybatis-spring</artifactId>
+    	<version>2.0.6</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-jdbc</artifactId>
+    	<version>5.3.14</version>
+    </dependency>
+    
+    <!-- 3.数据库 -->
+    <dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>8.0.27</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>org.apache.commons</groupId>
+    	<artifactId>commons-dbcp2</artifactId>
+    	<version>2.9.0</version>
+    </dependency>
+    
+    <!-- 4.其他 -->
+    <dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.17</version>
+    </dependency>
+    
+    <!--事务依赖  -->
+    <dependency>
+    	<groupId>org.aspectj</groupId>
+    	<artifactId>aspectjrt</artifactId>
+    	<version>1.9.9</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>org.aspectj</groupId>
+    	<artifactId>aspectjweaver</artifactId>
+    	<version>1.9.9</version>
+    </dependency>
+    
+    <dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.2.2</version>
+		</dependency>
+  </dependencies>
+  <build>
+    <finalName>broadBand</finalName>
+    <plugins>
+    	<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-war-plugin</artifactId>
+    		<version>3.3.1</version>
+    	</plugin>
+    </plugins>
+  </build>
+</project>

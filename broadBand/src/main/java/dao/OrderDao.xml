@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--mapper映射文件的约束 必须是这样,固定的，以后作为模版使用-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.OrderDao">
+	<select id="getOrderList" parameterType="user" resultMap="UserWithOrder">
+		select * from orders natural join user where (userid like concat('%',#{username},'%') or username like concat('%',#{username},'%')) 
+			<if test="opendate !=null"> 
+				and (startdate&gt;=#{opendate} and startdate &lt;= #{endingdate})
+			 </if> 
+		order by startdate desc
+	
+	</select>
+
+	<resultMap type="Orders" id="UserWithOrder">
+		<id property="id" column="id"/>
+		<result property="userid" column="userid"/>
+		<result property="startdate" column="startdate"/>
+		<result property="cost" column="cost"/>
+		<result property="adminname" column="adminname"/>
+		<result property="tip" column="tip"/>
+		<association property="user" javaType="User">
+			<id property="userid" column="userid"/>
+			<result property="username" column="username"/>
+			<result property="dorm" column="dorm"/>
+			<result property="opendate" column="opendate"/>
+			<result property="endingdate" column="endingdate"/>
+			<result property="type" column="type"/>
+		</association>
+	</resultMap>
+	
+	
+</mapper>
